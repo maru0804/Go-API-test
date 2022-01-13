@@ -18,6 +18,7 @@ var pdatas = []pdata{
 
 func main() {
 	engine := gin.Default()
+	engine.Use(testMiddleware())
 	engine.GET("/", helloTest)
 	engine.GET("/show", getAllpdata)
 	engine.POST("/post", postPdatas)
@@ -45,4 +46,16 @@ func postPdatas(c *gin.Context) {
 		log.Println(v)
 	}
 	c.IndentedJSON(http.StatusCreated, newPdata)
+}
+
+// ここで例外処理をしたい
+// content-type がない場合→curl: no URL specified!
+// 実装内容：get OK , post if context確認必要
+func testMiddleware() gin.HandlerFunc {
+	// return func ??
+	return func(c *gin.Context) {
+		log.Println(c.Request.Body)
+		log.Println(c.Request.Header)
+		c.Next()
+	}
 }
