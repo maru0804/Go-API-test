@@ -41,8 +41,8 @@ func postPdatas(c *gin.Context) {
 
 	// Add the new album to the slice.
 	pdatas = append(pdatas, newPdata)
-	for _, i := range pdatas {
-		log.Println(i)
+	for _, v := range pdatas {
+		log.Println(v)
 	}
 	c.IndentedJSON(http.StatusCreated, newPdata)
 }
