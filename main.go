@@ -36,7 +36,11 @@ func getAllpdata(c *gin.Context) {
 func postPdatas(c *gin.Context) {
 	var newPdata pdata
 
-	if err := c.BindJSON(&newPdata); err != nil {
+	// if err := c.BindJSON(&newPdata); err != nil {
+	// 	return
+	// }
+	// BindJSONとの挙動の違い
+	if err := c.Bind(&newPdata); err != nil {
 		return
 	}
 
