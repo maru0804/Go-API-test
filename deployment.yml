@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: go-app
-        image: go-api-test_app
+        # image: go-api-test_app
+        image: test-k8s
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
